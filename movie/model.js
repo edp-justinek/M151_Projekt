@@ -62,11 +62,11 @@ export async function remove(id) {
     return;
 }
 
-export async function rating(user,movie,rating) {
+export async function rating(movie,rating,user) {
     const queryDelete = 'DELETE FROM Rating WHERE movie = ? AND user = ?';
     await connection.query(queryDelete, [user,movie]);
-    const queryRating = 'INSERT INTO Rating (user,movie,rating) VALUES (?, ?, ?)';
-    await connection.query(queryRating, [user,movie,rating]);
+    const queryRating = 'INSERT INTO Rating (movie,rating,user) VALUES (?, ?, ?)';
+    await connection.query(queryRating, [movie,rating,user]);
     return;
 }
 
